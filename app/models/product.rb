@@ -10,16 +10,9 @@
 #  updated_at :datetime         not null
 #
 class Product < ApplicationRecord
-  # belongs_to :place
-  # has_one :market
-  # has_one_attached :image
-
+  has_many :purchases
+  
   validates :name, presence: true
   validates :quantity, presence: true
   validates :price, presence: true
-
-  # validates :place_id, presence: true
-  # validates :name, presence: true
-  # validates :quantity, presence: true
-  # validates :year_created, presence: true
 end
