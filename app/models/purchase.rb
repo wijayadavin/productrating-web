@@ -4,7 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  delivery_address :string
-#  quantity         :string
+#  quantity         :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  product_id       :bigint
@@ -25,12 +25,11 @@ class Purchase < ApplicationRecord
 
   validate :quantity_within_limit
   
-  # TODO: Fix validation logic
+  # TODO: Make sure quantity cannot be a negative number
   def quantity_within_limit
-    return unless product
+    return unless quantity && product
 
-    value = quantity.to_i
-    if value > product.quantity
+    if quantity > product.quantity
       errors.add(:quantity, :too_many)
     end
   end

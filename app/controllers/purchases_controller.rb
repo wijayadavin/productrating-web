@@ -23,13 +23,19 @@ class PurchasesController < ApplicationController
     end
   end
 
-  # TODO: Implement edit/update
+  def edit
+    # TODO: Show edit form
+  end
+
+  def update
+    # TODO: Update row (save to database)
+  end
 
   def show
   end
 
   private
-  def purchase_params
-    params.require(:purchase).permit(:quantity, :delivery_address)
-  end
+    def purchase_params
+      params.require(:purchase).permit(:quantity, :delivery_address)
+    end
 end  

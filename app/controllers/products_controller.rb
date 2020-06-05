@@ -21,8 +21,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # TODO: Implement: edit/update
-
   def show
   end
 
@@ -31,7 +29,7 @@ class ProductsController < ApplicationController
   end
 
   private
-  def product_params
-    params.require(:product).permit(:name, :quantity, :price)
-  end
+    def product_params
+      params.require(:product).permit(:name, :quantity, :price)
+    end
 end  

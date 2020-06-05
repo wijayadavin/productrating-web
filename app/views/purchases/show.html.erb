@@ -1,17 +1,20 @@
 <div>
 
-Name: <%= @product.name %>
+<h1>Purchase #<%= @purchase.id %></h1>
+
+Quantity: <%= @purchase.quantity %>
 <br />
-<!-- TODO: format currency -->
-Price: <%= @product.price %>
-<br />
-Quantity: <%= @product.quantity %>
+Address: <%= @purchase.delivery_address %>
 <br />
 <!-- TODO: format date time -->
-Posted on: <%= @product.created_at %>
+Purchased at: <%= @purchase.created_at %>
 
 <br />
 <br />
-<%= link_to 'Buy', new_product_purchase_url(@product) %>
+<%= link_to 'Edit', 'TODO' %>
+&nbsp;&nbsp;
+<%= link_to 'Delete', 'TODO' %>
+&nbsp;&nbsp;
+<%= link_to 'Give a Review', new_review_url(review: { purchase_id: @purchase.id }) %>
 
 </div>

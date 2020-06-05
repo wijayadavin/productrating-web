@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :products do
     resources :purchases
   end
+  
+  resources :reviews
 end

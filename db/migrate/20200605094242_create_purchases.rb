@@ -3,7 +3,7 @@ class CreatePurchases < ActiveRecord::Migration[6.0]
     create_table :purchases do |t|
       t.belongs_to :product, foreign_key: true
 
-      t.string :quantity
+      t.integer :quantity
       t.string :delivery_address
 
       t.timestamps
