@@ -11,12 +11,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # TODO
-    raise "Params: #{review_params}"
+    # TODO: Create the record in database
+    raise "TODO: Save to database: #{review_params}"
   end
 
   private
     def review_params
       params.require(:review).permit(:purchase_id)
     end
-end  
+end

@@ -5,7 +5,7 @@ class PurchasesController < ApplicationController
     case action_name.to_sym
     when :new, :create
       @purchase = @product.purchases.new
-    when :show, :edit, :update, :destroy
+    when :show
       @purchase = @product.purchases.find(params[:id])
     end
   end
@@ -28,7 +28,11 @@ class PurchasesController < ApplicationController
   end
 
   def update
-    # TODO: Update row (save to database)
+    # TODO: Update record (save to database)
+  end
+
+  def destroy
+    # TODO: Delete record
   end
 
   def show

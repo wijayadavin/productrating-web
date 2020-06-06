@@ -33,4 +33,11 @@ class Purchase < ApplicationRecord
       errors.add(:quantity, :too_many)
     end
   end
+
+  # TODO: Implement this logic
+  # - Return true if a review for this purchase exists in the database 
+  # - Return false otherwise
+  def review_exist?
+    false
+  end
 end

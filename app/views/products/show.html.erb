@@ -4,13 +4,15 @@
 
 Name: <%= @product.name %>
 <br />
-<!-- TODO: format currency -->
-Price: <%= @product.price %>
+Price: <%= format_price @product.price %>
 <br />
 Quantity: <%= @product.quantity %>
 <br />
-<!-- TODO: format date time -->
+<%# TODO: Format the date time to make it more readable %>
 Posted on: <%= @product.created_at %>
+<br />
+<%# TODO: Calculate average rating based on the reviews from all of the product's purchases %>
+Average rating: TODO
 
 <br />
 <br />
