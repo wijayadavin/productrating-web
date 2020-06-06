@@ -23,17 +23,6 @@ class Purchase < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true }
   validates :delivery_address, presence: true
 
-  validate :quantity_within_limit
-  
-  # TODO: Make sure quantity cannot be a negative number
-  def quantity_within_limit
-    return unless quantity && product
-
-    if quantity > product.quantity
-      errors.add(:quantity, :too_many)
-    end
-  end
-
   # TODO: Implement this logic
   # - Return true if a review for this purchase exists in the database 
   # - Return false otherwise

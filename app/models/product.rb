@@ -15,4 +15,15 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :quantity, presence: true
   validates :price, presence: true
+  
+  validate :quantity_within_limit
+  
+  def quantity_within_limit
+    return unless quantity
+
+    if quantity < 0
+      errors.add(:quantity, 'too few')
+    end
+  end
+
 end
