@@ -1,24 +1,14 @@
-# README
+# Set up dev environment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Install Ruby (e.g. see instructions in https://gorails.com/setup/osx/10.15-catalina)
+- Install PostgreSQL (e.g. see instructions in https://gorails.com/setup/osx/10.15-catalina)
+- Install Rails and dependencies. Run `bundle install` in project directory.
 
-Things you may want to cover:
+# Set up database
+- `bundle exec rake db:reset`
+- `bundle exec rake db:fixtures:load`
 
-* Ruby version
+# Run servers
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Run backend server: `rails s`
+- Open `http://localhost:3000/` in a browser.
