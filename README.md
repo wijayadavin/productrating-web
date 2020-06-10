@@ -23,7 +23,6 @@
 
 # Submit your changes
 
-- Fork this repository
-- Commit and push your changes
-- Make a PR from your fork to this repository
-- Send us an email
+- Clone this repository
+- Commit your changes
+- Zip your repository and email us the zip
