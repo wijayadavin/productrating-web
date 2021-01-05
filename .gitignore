@@ -51,5 +51,6 @@ yarn-debug.log*
 /sh
 /OLD
 
+.vscode
 ###
 
