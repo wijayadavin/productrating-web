@@ -18,20 +18,24 @@ class PurchasesController < ApplicationController
     # - For example, if `purchase.quantity` is 3, decrease `product.quantity` by 3
     # - Display an error if `product.quantity` is less than 0 (negative number)
     @purchase.assign_attributes(purchase_params)
-    if @purchase.save
-      # === UPDATE QUANTITY AFTER PURCHASE ===
-      # Get product quantity (before purchase):
-      @product_quantity_before = Product.find(params[:product_id])["quantity"].to_i
-      @product_quantity_after = @product_quantity_before - purchase_params["quantity"].to_i
+    
+    # === UPDATE QUANTITY AFTER PURCHASE ===
+    # Get product quantity (before purchase):
+    @product_quantity_before = Product.find(params[:product_id])["quantity"].to_i
+    @product_quantity_after = @product_quantity_before - purchase_params["quantity"].to_i
 
-      if @product_quantity_after < 0
-        flash[:error] = 'Sorry, the purchase was failed due to product is currently Out of stock.'
-        redirect_to product_url(@product)
-      else
-      # If quantity after purchase is greater than 0, update `product.quantity`:
-      @product.update_attributes({"quantity" => ()}) 
+    if @product_quantity_after < 0
+      flash[:error] = 'Sorry, the purchase was failed due to product is currently Out of stock.'
       redirect_to product_url(@product)
-      end
+    end
+
+    # If quantity after purchase is greater than 0, update `product.quantity`:
+    if @purchase.save
+      puts "saving..."
+      puts @product_quantity_after
+      @product.update_attributes({"quantity" => (@product_quantity_after)}) 
+      redirect_to product_url(@product)
+
     else
       flash[:error] = @purchase.errors.full_messages.join(', ')
       render :new
@@ -48,7 +52,6 @@ class PurchasesController < ApplicationController
 
   def destroy
     # TODO: Delete record
-      puts "===== Deleting data purchase with ID = #{@purchase["id"]} ====="
       if @purchase.destroy
         redirect_to product_url(@product)
       else

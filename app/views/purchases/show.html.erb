@@ -18,7 +18,7 @@ Purchased at: <%= @purchase.created_at %>
 &nbsp;&nbsp;
 
 <%# TODO: Make a DELETE request to purchases#destroy %>
-<%= link_to 'Delete', '' %>
+<%= link_to 'Delete', product_purchase_url(), method: :delete %>
 
 </div>
 
