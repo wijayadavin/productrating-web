@@ -26,4 +26,8 @@ class Product < ApplicationRecord
     end
   end
 
+  def average_rating
+    @ratings = Review.where(purchase_id: self[:id])
+    return @ratings.sum(:rating) / @ratings.count(:rating)
+  end
 end
