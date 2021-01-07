@@ -5,13 +5,13 @@ Quantity: <%= @purchase.quantity %>
 <br />
 Address: <%= @purchase.delivery_address %>
 <br />
-<%# TODO: Format the date time to make it more readable %>
-Purchased at: <%= @purchase.created_at %>
+<%# ✔️TODO: Format the date time to make it more readable %>
+Purchased at: <%= @purchase.created_at.strftime("%d %B %Y")  %>
 
 <br />
 <br />
 
-<%# TODO: Open purchases#edit page %>
+<%# ✔️TODO: Open purchases#edit page %>
 <%= link_to 'Edit', edit_product_purchase_url() %>
 
 &nbsp;&nbsp;
