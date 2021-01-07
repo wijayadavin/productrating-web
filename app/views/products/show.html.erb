@@ -1,38 +1,34 @@
 <div>
+  <h1>Product #<%= @product.id %></h1>
 
-<h1>Product #<%= @product.id %></h1>
-
-Name: <%= @product.name %>
-<br />
-Price: <%= format_price @product.price %>
-<br />
-Quantity: <%= @product.quantity %>
-<br />
-<%# ✔️TODO: Format the date time to make it more readable %>
-Posted on: <%=  @product.created_at.strftime("%d %B %Y") %>
-<br />
-<%# ✔️TODO: Calculate average rating based on the reviews from all of the product's purchases %>
-Average rating: <%= @product.rating_helper %>
-<br />
-<%# ✔️BONUS TODO: Show product's store name %>
-Store: <%= @product.store_name %>
-<br />
-<br />
-<%= link_to 'Buy', new_product_purchase_url(@product) %>
-
+  Name: <%= @product.name %>
+  <br />
+  Price: <%= format_price @product.price %>
+  <br />
+  Quantity: <%= @product.quantity %>
+  <br />
+  <%# ✔️TODO: Format the date time to make it more readable %>
+  Posted on: <%=  @product.created_at.strftime("%d %B %Y") %>
+  <br />
+  <%# ✔️TODO: Calculate average rating based on the reviews from all of the product's purchases %>
+  Average rating: <%= @product.rating_helper %>
+  <br />
+  <%# ✔️BONUS TODO: Show product's store name %>
+  Store: <%= link_to @product.store_name,  store_url(@product.store) %>
+  <br />
+  <br />
+  <%= link_to 'Buy', new_product_purchase_url(@product) %>
 </div>
 
 <br />
 <br />
 
 <div>
+  <h2>Purchases</h2>
 
-<h2>Purchases</h2>
-
-<ul>
-<% @product.purchases.each do |purchase| %>
-  <li><%= link_to "Purchase ##{purchase.id}", product_purchase_url(@product, purchase) %></li>
-<% end %>
-</ul>
-
+  <ul>
+  <% @product.purchases.each do |purchase| %>
+    <li><%= link_to "Purchase ##{purchase.id}", product_purchase_url(@product, purchase) %></li>
+  <% end %>
+  </ul>
 </div>
