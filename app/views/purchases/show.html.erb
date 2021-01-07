@@ -1,5 +1,4 @@
 <div>
-
 <h1>Purchase #<%= @purchase.id %></h1>
 
 Quantity: <%= @purchase.quantity %>
@@ -25,11 +24,15 @@ Purchased at: <%= @purchase.created_at %>
 <br />
 
 <h2>Review</h2>
-
+  <% puts @purchase.review_exist? %>
 <% if @purchase.review_exist? %>
-  <%# TODO: Display the review here %>
+  <%# ✔️TODO: Display the review here %>
+  <li><%= "Rating: #{@review.rating}" %></li>
+  <li><%= "Comment: #{@review.comment}" %></li>
 <% else %>
-  <%= link_to 'Give a Review', new_review_url(review: { purchase_id: @purchase.id }) %>
+  <%= link_to 'Give a Review', new_review_url(review: {
+    purchase_id: @purchase.id
+    }) %>
 <% end %>
 
 </div>
