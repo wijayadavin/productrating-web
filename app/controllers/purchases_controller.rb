@@ -26,14 +26,14 @@ class PurchasesController < ApplicationController
     @product_quantity_after = @product_quantity_before - purchase_params["quantity"].to_i
 
     if @product_quantity_after < 0
-      flash[:error] = '⚠️Sorry, the product is out of stock.⚠️'
-      redirect_to product_url()
+      flash[:error] = '⚠️There is not enough stock for this product.⚠️'
+      return redirect_to product_url(params[:product_id])
     end
 
     # If quantity after purchase is greater than 0, update `product.quantity`:
     if @purchase.save
       @product.update_attributes({"quantity" => (@product_quantity_after)}) 
-      redirect_to product_url()
+      return redirect_to product_url(params[:product_id])
 
     else
       flash[:error] = @purchase.errors.full_messages.join(', ')

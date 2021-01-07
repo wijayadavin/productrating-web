@@ -6,8 +6,8 @@ Name: <%= @store.name %>
 <br />
 City: <%= @store.city %>
 <br />
-<%# ✔️TODO: Calculate average rating based on the reviews from all of the product's rating %>
-<%# Average rating: <%= @store.average_rating %> %>
+<%# BONUS TODO: Calculate average rating based on the reviews from all of the product's rating %>
+<%# Average rating: <%= @store.average_rating %>
 <br />
 <br />
 
@@ -18,5 +18,12 @@ City: <%= @store.city %>
 
 <div>
 
+<h2>Products</h2>
+
+<ul>
+<% @store.products.each do |product| %>
+  <li><%= link_to product.name, product_url(product) %></li>
+<% end %>
+</ul>
 
 </div>

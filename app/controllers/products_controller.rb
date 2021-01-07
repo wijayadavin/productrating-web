@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @stores = Store.all
   end
 
   def create

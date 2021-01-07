@@ -1,5 +1,5 @@
 <div>
-
+<h1>Create a new product</h1>
 <%= form_with model: @product, local: true do |f| %>
   <div style="margin-top: 10px;">
     <div><%= f.label :name %><div>
@@ -18,7 +18,8 @@
     
   <div style="margin-top: 10px;">
     <div><%= f.label :store_id %><div>
-    <%= f.text_field :store_id %>
+    <%# <%= f.text_field :store_id %>
+    <%= f.collection_select :store_id, @stores.order(:name), :id, :name %>
   </div>
   
   <div style="margin-top: 14px;">
