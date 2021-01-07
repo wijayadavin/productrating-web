@@ -26,7 +26,7 @@ class PurchasesController < ApplicationController
     @product_quantity_after = @product_quantity_before - purchase_params["quantity"].to_i
 
     if @product_quantity_after < 0
-      flash[:error] = '⚠️Sorry, the purchase was failed due to the product is currently out of stock.⚠️'
+      flash[:error] = '⚠️Sorry, the product is out of stock.⚠️'
       redirect_to product_url()
     end
 
@@ -84,6 +84,7 @@ class PurchasesController < ApplicationController
   end
 
   def show
+    @review = Review.where(purchase_id: params[:id]).take
   end
 
 

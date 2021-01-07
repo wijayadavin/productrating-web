@@ -1,7 +1,7 @@
 <div>
 
 <%= form_with model: @review, local: true do |f| %>
-  <%= f.hidden_field :purchase_id %>
+  <%= f.hidden_field :purchase_id, value: params[:review][:purchase_id] %>
 
   <div style="margin-top: 10px;">
     <div><%= f.label :rating %><div>
