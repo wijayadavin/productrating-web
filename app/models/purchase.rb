@@ -28,7 +28,7 @@ class Purchase < ApplicationRecord
   # - Return false otherwise
   def review_exist?
     @reviews_count = Review.where(purchase_id: self["id"]).count
-    if (@reviews_count > 0)
+    if @reviews_count > 0
       true
     else
       false
