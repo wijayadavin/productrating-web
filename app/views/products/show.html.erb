@@ -13,7 +13,9 @@ Posted on: <%=  @product.created_at.strftime("%d %B %Y") %>
 <br />
 <%# ✔️TODO: Calculate average rating based on the reviews from all of the product's purchases %>
 Average rating: <%= @product.average_rating %>
-
+<br />
+<%# ✔️BONUS TODO: Store feature %>
+Store: <%= @product.store_name %>
 <br />
 <br />
 <%= link_to 'Buy', new_product_purchase_url(@product) %>

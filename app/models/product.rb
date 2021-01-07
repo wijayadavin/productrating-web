@@ -10,14 +10,15 @@
 #  updated_at :datetime         not null
 #
 class Product < ApplicationRecord
-  has_many :purchases
-  
+  belongs_to :store
+  has_many :purchases, :dependent => :delete_all
+
   validates :name, presence: true
   validates :quantity, presence: true
   validates :price, presence: true
   
   validate :quantity_within_limit
-  
+
   def quantity_within_limit
     return unless quantity
 
@@ -34,4 +35,9 @@ class Product < ApplicationRecord
       return @ratings.sum(:rating) / @ratings.count(:rating)
     end
   end
+
+  def store_name
+    return Store.find(self[:store_id]).name
+  end
+  
 end
