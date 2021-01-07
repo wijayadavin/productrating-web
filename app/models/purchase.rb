@@ -24,9 +24,11 @@ class Purchase < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true }
   validates :delivery_address, presence: true
 
-  # ✔️TODO: Implement this logic
+
+  # ==  ✔️TODO: Implement this logic
   # - Return true if a review for this purchase exists in the database 
   # - Return false otherwise
+  # 
   def review_exist?
     @reviews_count = Review.where(purchase_id: self["id"]).count
     if @reviews_count > 0
@@ -35,4 +37,6 @@ class Purchase < ApplicationRecord
       false
     end
   end
+
+  
 end

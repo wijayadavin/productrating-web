@@ -25,11 +25,14 @@ class Review < ApplicationRecord
 
   validate :rating_within_limit
   
+  # ==  ✔️TODO: Implement validation logic for `rating`
+  # 
   def rating_within_limit
-    # ✔️TODO: Implement validation logic for `rating`
     # - Rating cannot be greater than 5
     # - Rating cannot be a negative number
     # - Handle any potential error/crash
     errors.add(:rating, "value must be between 0 and 5") unless rating >= 0 && rating <= 5
   end
+
+  
 end

@@ -20,6 +20,8 @@ class Product < ApplicationRecord
   validate :quantity_within_limit
 
 
+  # == A function to validate the quantity value:
+  # 
   def quantity_within_limit
     return unless quantity
 
@@ -29,14 +31,16 @@ class Product < ApplicationRecord
   end
 
 
+  # ==  ✔️Bonus TODO: A method to 'calculate' average product rating
+  #  
   def average_rating
-    #  1. get all purchases by product id:
+    #  get all purchases by product id:
     @purchases = Purchase.where(product_id: self[:id])
-    #  2. prepare values:
+    #  prepare values:
     @rating_sum = 0
     @count = 0
 
-    #  3. get ratings from each purchase:
+    # Loop through the purchase and calculate:
     @purchases.each {|purchase|
       @review = Review.where(purchase_id: purchase[:id]).take
       # if found rating, add value to rating_sum and count:
@@ -46,12 +50,12 @@ class Product < ApplicationRecord
       end
     }
 
-    #  4. calculate average review:
+    #  calculate average review:
     if @count > 0
       @average = @rating_sum / @count
     end
     
-    #  5. return result:
+    #  return result:
     if @average.nil?
       return nil
     else
@@ -60,8 +64,9 @@ class Product < ApplicationRecord
   end
 
 
+  # ==  ✔️Bonus TODO: A method to 'show' product average rating:
+  # 
   def rating_helper
-    #  get product average rating:
     @rating = self.average_rating()
 
     #  return rating if found, else return a notice:
@@ -73,6 +78,7 @@ class Product < ApplicationRecord
   end
 
 
+  # ==  ✔️Bonus TODO: A function to get store name:
   def store_name
     return Store.find(self[:store_id]).name
   end

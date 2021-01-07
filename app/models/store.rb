@@ -14,19 +14,53 @@ class Store < ApplicationRecord
   validates :name, presence: true
   validates :city, presence: true
 
+
+  # ==  ✔️Bonus TODO: A method to 'calculate' store average rating:
+  # 
   def average_rating
-    @Products = Product.where({store_id: self[:id]})
-    @ratings = 0
+    @rating_sum = 0
     @count = 0
+
+    # Get all products by store id:
+    @Products = Product.where({store_id: self[:id]})
+
+    # Loop through the product and calculate:
     @Products.each {|product|
-      @ratings += product.average_rating.to_i
-      @count += 1
+      @average_rating = product.average_rating
+      unless @average_rating.nil?
+        @rating_sum += @average_rating
+        @count += 1
+      end
     }
     if @count < 1
       @count = 1
     end
-    puts @ratings
-    puts @count
-    return @ratings / @count
+
+    # Return the average value:
+    return @rating_sum / @count
   end
+
+
+  # ==  ✔️Bonus TODO: A method to 'show' store average rating:
+  # 
+  def rating_helper
+    @rating = self.average_rating()
+
+    #  return rating if found, else return a notice:
+    if @rating.is_a? (Integer)
+      return @rating
+    else
+      return "There is no rating yet, be the first to rate this store!"
+    end
+  end
+
+
+  # ==  ✔️Bonus TODO: A method to return store record by store id:
+  # 
+  def store
+    @store = Store.find(self.store_id)
+    return @store
+  end
+
+
 end

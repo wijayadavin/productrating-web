@@ -13,27 +13,25 @@ class PurchasesController < ApplicationController
   def new
   end
 
-
+  # ==  ✔️TODO: Also decrease product quantity
+  # 
   def create
-    # ✔️TODO: Also decrease product quantity.
     # - For example, if `purchase.quantity` is 3, decrease `product.quantity` by 3
     # - Display an error if `product.quantity` is less than 0 (negative number)
     @purchase.assign_attributes(purchase_params)
 
-    # Get product quantity (before purchase):
+    # Get product quantity (before & after):
     @product_quantity_before = Product.find(params[:product_id])["quantity"].to_i
     @product_quantity_after = @product_quantity_before - purchase_params["quantity"].to_i
 
+    # If 'after' quantity is validated, send error:
     if @product_quantity_after < 0
       flash[:error] = '⚠️There is not enough stock for this product.⚠️'
       return redirect_to product_url(params[:product_id])
-    end
-
-    # If quantity after purchase is greater than 0, update `product.quantity`:
-    if @purchase.save
+    # else if the new record updated successfully saved, redirect, else send error:
+    elsif @purchase.save
       @product.update_attributes({"quantity" => (@product_quantity_after)}) 
       return redirect_to product_url(params[:product_id])
-
     else
       flash[:error] = @purchase.errors.full_messages.join(', ')
       render :new
@@ -41,22 +39,27 @@ class PurchasesController < ApplicationController
   end
 
 
+  # ==  ✔️TODO: Show edit form
+  # 
   def edit
-    # ✔️TODO: Show edit form
+    # (no need extra params)
   end
 
 
+  # ==  ✔️TODO: Update record (save to database)
+  # 
   def update
-    # ✔️TODO: Update record (save to database)
+    # get params:
     @new_record = params[:purchase]
 
-    # remove duplicated:
+    # remove existing value in purchase param:
     @new_record.each do |key, value|
       if  @new_record[key].to_s == @purchase[key].to_s
         @new_record.delete(key)
       end
     end
 
+    # if empty, send error, else update existing value:
     if @new_record.empty?
       flash[:error] = '⚠️ Nothing changed ⚠️'
       redirect_to product_purchase_url()
@@ -73,8 +76,10 @@ class PurchasesController < ApplicationController
   end
 
 
+  # == ✔️TODO: Delete record
+  # 
   def destroy
-    # ✔️TODO: Delete record
+      # redirect if successfully deleted, else send error: 
       if @purchase.destroy
         redirect_to product_url(params["product_id"])
       else
@@ -82,7 +87,9 @@ class PurchasesController < ApplicationController
       end
   end
 
+
   def show
+    # forward review data to the review#show:
     @review = Review.where(purchase_id: params[:id]).take
   end
 

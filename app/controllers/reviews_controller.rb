@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
     case action_name.to_sym
     when :new, :create
       @review = Review.new    
+      @purchase = Purchase.find(params["review"][:purchase_id])
     end
   end
 
@@ -11,11 +12,13 @@ class ReviewsController < ApplicationController
   end
 
 
+  # == ✔️TODO: Create the record in database
+  # 
   def create
-    # ✔️TODO: Create the record in database
+    #  assign the review param:
     @review.assign_attributes(review_params)
-    @purchase = Purchase.find(params["review"][:purchase_id])
 
+    #  if successfully saved, redirect, else send error:
     if @review.save
       redirect_to product_purchase_url(@purchase["product_id"], @purchase["id"])
     else
