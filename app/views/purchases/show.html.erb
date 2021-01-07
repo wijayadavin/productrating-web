@@ -1,38 +1,38 @@
 <div>
-<h1>Purchase #<%= @purchase.id %></h1>
+  <h1>Purchase #<%= @purchase.id %></h1>
 
-Quantity: <%= @purchase.quantity %>
-<br />
-Address: <%= @purchase.delivery_address %>
-<br />
-<%# ✔️TODO: Format the date time to make it more readable %>
-Purchased at: <%= @purchase.created_at.strftime("%d %B %Y")  %>
+  Quantity: <%= @purchase.quantity %>
+  <br />
+  Address: <%= @purchase.delivery_address %>
+  <br />
+  <%# ✔️TODO: Format the date time to make it more readable %>
+  Purchased at: <%= @purchase.created_at.strftime("%d %B %Y")  %>
 
-<br />
-<br />
+  <br />
+  <br />
 
-<%# ✔️TODO: Open purchases#edit page %>
-<%= link_to 'Edit', edit_product_purchase_url() %>
+  <%# ✔️TODO: Open purchases#edit page %>
+  <%= link_to 'Edit', edit_product_purchase_url() %>
 
-&nbsp;&nbsp;
+  &nbsp;&nbsp;
 
-<%# ✔️TODO: Make a DELETE request to purchases#destroy %>
-<%= link_to 'Delete', product_purchase_url(), method: :delete %>
-
+  <%# ✔️TODO: Make a DELETE request to purchases#destroy %>
+  <%= link_to 'Delete', product_purchase_url(), method: :delete %>
+  <br />
 </div>
 
-<br />
+<div>
+  <h2>Review</h2>
 
-<h2>Review</h2>
-  <% puts @purchase.review_exist? %>
-<% if @purchase.review_exist? %>
-  <%# ✔️TODO: Display the review here %>
-  <li><%= "Rating: #{@review.rating}" %></li>
-  <li><%= "Comment: #{@review.comment}" %></li>
-<% else %>
-  <%= link_to 'Give a Review', new_review_url(review: {
-    purchase_id: @purchase.id
-    }) %>
-<% end %>
+  <% if @purchase.review_exist? %>
+    <%# ✔️TODO: Display the review here %>
+    <li><%= "Rating: #{@review.rating}" %></li>
+    <li><%= "Comment: #{@review.comment}" %></li>
 
+  <% else %>
+    <%# show the 'give review button %>
+    <%= link_to 'Give a Review', new_review_url(review: {
+      purchase_id: @purchase.id
+      }) %>
+  <% end %>
 </div>

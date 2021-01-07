@@ -1,31 +1,27 @@
 <div>
+  <h1>Store #<%= @store.id %></h1>
 
-<h1>Store #<%= @store.id %></h1>
+  Name: <%= @store.name %>
+  <br />
+  City: <%= @store.city %>
+  <br />
+  <%# ✔️BONUS TODO: Calculate average rating based on the reviews from all of the product's rating %>
+  Average Rating: <%= @store.rating_helper %>
+  <br />
+  <br />
 
-Name: <%= @store.name %>
-<br />
-City: <%= @store.city %>
-<br />
-Rating: <%= @store.average_rating %>
-<br />
-<%# BONUS TODO: Calculate average rating based on the reviews from all of the product's rating %>
-<%# Average rating: <%= @store.average_rating %>
-<br />
-<br />
+  </div>
 
-</div>
+  <br />
+  <br />
 
-<br />
-<br />
+  <div>
 
-<div>
+  <h2>Products</h2>
 
-<h2>Products</h2>
-
-<ul>
-<% @store.products.each do |product| %>
-  <li><%= link_to product.name, product_url(product) %></li>
-<% end %>
-</ul>
-
+  <ul>
+    <% @store.products.each do |product| %>
+      <li><%= link_to product.name, product_url(product) %></li>
+    <% end %>
+  </ul>
 </div>
