@@ -12,7 +12,7 @@ Quantity: <%= @product.quantity %>
 Posted on: <%=  @product.created_at.strftime("%d %B %Y") %>
 <br />
 <%# ✔️TODO: Calculate average rating based on the reviews from all of the product's purchases %>
-Average rating: <%= @product.average_rating %>
+Average rating: <%= @product.rating_helper %>
 <br />
 <%# ✔️BONUS TODO: Show product's store name %>
 Store: <%= @product.store_name %>

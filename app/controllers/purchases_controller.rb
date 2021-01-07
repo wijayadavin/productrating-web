@@ -1,7 +1,6 @@
 class PurchasesController < ApplicationController
   before_action do
     @product = Product.find(params[:product_id])
-
     case action_name.to_sym
     when :new, :create
       @purchase = @product.purchases.new
