@@ -24,8 +24,6 @@
 #   <<: *default
 #   database: db/production.sqlite3
 
-
-
 ### Custom
 
 default: &default
@@ -52,5 +50,4 @@ test:
 production:
   <<: *default
   database: ProductRating_production
-
 ###

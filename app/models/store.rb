@@ -13,4 +13,20 @@ class Store < ApplicationRecord
 
   validates :name, presence: true
   validates :city, presence: true
+
+  def average_rating
+    @Products = Product.where({store_id: self[:id]})
+    @ratings = 0
+    @count = 0
+    @Products.each {|product|
+      @ratings += product.average_rating.to_i
+      @count += 1
+    }
+    if @count < 1
+      @count = 1
+    end
+    puts @ratings
+    puts @count
+    return @ratings / @count
+  end
 end
