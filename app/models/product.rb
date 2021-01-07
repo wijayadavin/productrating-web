@@ -28,6 +28,10 @@ class Product < ApplicationRecord
 
   def average_rating
     @ratings = Review.where(purchase_id: self[:id])
-    return @ratings.sum(:rating) / @ratings.count(:rating)
+    if @ratings.empty?
+      return "There is no rating yet, be the first to rate this product!"
+    else
+      return @ratings.sum(:rating) / @ratings.count(:rating)
+    end
   end
 end
