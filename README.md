@@ -1,3 +1,6 @@
+# DATABASE ERD
+![ERD of Product Rating Web](./erd.png)
+
 # Set up dev environment
 
 - Install Ruby (e.g. see instructions in https://gorails.com/setup/osx/10.15-catalina)
