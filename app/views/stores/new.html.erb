@@ -1,4 +1,5 @@
 <div>
+  <%= link_to 'Back', previous_page_helper() %>
   <h1>Create a new store</h1>
   <%= form_with model: @store, local: true do |f| %>
     <div style="margin-top: 10px;">

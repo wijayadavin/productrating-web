@@ -1,5 +1,6 @@
 <div>
-  <h1>Create a new product</h1>
+  <%= link_to 'Back', previous_page_helper() %>
+  <h1>Post a new product</h1>
   <%= form_with model: @product, local: true do |f| %>
     <div style="margin-top: 10px;">
       <div><%= f.label :name %><div>
