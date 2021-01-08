@@ -1,4 +1,5 @@
 <div>
+  <%= link_to 'Back', previous_page_helper() %>
   <h1>Store #<%= @store.id %></h1>
 
   Name: <%= @store.name %>
@@ -20,8 +21,12 @@
   <h2>Products</h2>
 
   <ul>
-    <% @store.products.each do |product| %>
-      <li><%= link_to product.name, product_url(product) %></li>
+    <% if @store.product_exist? %>
+      <% @store.products.each do |product| %>
+        <li><%= link_to product.name, product_url(product) %></li>
+      <% end %>
+    <% else %>
+      <li>This store does not has any product yet</li>
     <% end %>
   </ul>
 </div>

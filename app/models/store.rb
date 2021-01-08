@@ -55,4 +55,18 @@ class Store < ApplicationRecord
   end
 
 
+  # ==  ✔️BONUS TODO: check if store has any product
+  # - Return true if a review for this purchase exists in the database 
+  # - Return false otherwise
+  # 
+  def product_exist?
+    @products_count = Product.where(store_id: self["id"]).count
+    if @products_count > 0
+      true
+    else
+      false
+    end
+  end
+
+
 end
