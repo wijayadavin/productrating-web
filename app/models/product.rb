@@ -12,6 +12,7 @@
 class Product < ApplicationRecord
   belongs_to :store
   has_many :purchases, :dependent => :delete_all
+  has_many :reviews, through: :purchases, :dependent => :delete_all
 
   validates :name, presence: true
   validates :quantity, presence: true
@@ -34,28 +35,11 @@ class Product < ApplicationRecord
   # ==  ✔️Bonus TODO: A method to 'calculate' average product rating
   #  
   def average_rating
-    #  get all purchases by product id:
-    @purchases = Purchase.where(product_id: self[:id])
-    #  prepare values:
-    @rating_sum = 0
-    @count = 0
+    #  get all rating average by product id:
+    @average = Product.includes([
+        :purchases => [:reviews]
+      ]).where({id: self[:id]}).average(:rating).to_i
 
-    # Loop through the purchase and calculate:
-    @purchases.each {|purchase|
-      @review = Review.where(purchase_id: purchase[:id]).take
-      # if found rating, add value to rating_sum and count:
-      unless @review.nil?
-        @rating_sum += @review[:rating]
-        @count += 1
-      end
-    }
-
-    #  calculate average review:
-    if @count > 0
-      @average = @rating_sum / @count
-    end
-    
-    #  return result:
     if @average.nil?
       return nil
     else
