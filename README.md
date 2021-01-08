@@ -1,4 +1,4 @@
-# DATABASE ERD
+# Database ERD
 ![ERD of Product Rating Web](./erd.png)
 
 # Set up dev environment
